@@ -1,0 +1,22 @@
+# fly.toml app configuration file generated for teststore on 2023-09-05T23:47:30+10:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "teststore"
+primary_region = "syd"
+
+[build]
+  image = "khui97/restore:latest"
+
+[env]
+ ASPNETCORE_URLS="http://+:8080"
+ StripeSettings__PublishableKey="pk_test_51NZuAFALidsAEK3iJVI0Mt9dqvecifuF2KRuckcPVA1kpsnHWJHab0YkMmfYh0r10ml6mkTKqD4VFzb9WtTMuYuo00jYZvplsC"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
